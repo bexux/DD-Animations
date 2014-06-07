@@ -1,0 +1,37 @@
+@mixin animation($param) {
+	animation: $param;
+	-webkit-animation: $param;
+	-moz-animation: $param;
+	-ms-animation: $param;
+}
+
+// @include keyframe(myFrame) { from{...} to{...} }
+@mixin keyframe($name) {
+	@keyframes $name {
+		@content;
+	}
+	@-moz-keyframes $name {
+		@content;
+	}
+	@-webkit-keyframes $name {
+		@content;
+	}
+	@-o-keyframes $name {
+		@content;
+	}
+}
+
+/*Sprite: $animNum is row # and $steps is column #*/
+
+/* Mixin by Julien Knebel */
+@mixin anim($className, $animNum, $steps, $animParams) {
+
+	.#{$className} {
+		@content;
+		@include animation($className steps($steps) $animParams);
+	}
+	@include keyframe($className) {
+		from {  background-position:0px (-$spriteHeight * ($animNum - 1));}
+		to { background-position:-($spriteWidth * $steps) (-$spriteHeight * ($animNum - 1)); }
+	}
+}

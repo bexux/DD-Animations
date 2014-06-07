@@ -1,0 +1,68 @@
+@import 'mixins';
+
+body {
+	background: blue;
+	@include bgcover('images/large-bg.jpg', contain);
+	.stage {
+		background: url('../images/bg.jpg') no-repeat;
+		margin: 0 auto;
+		/*overflow: hidden;*/
+		height: 180px;
+		position: relative;
+		width: 500px;
+		z-index: 0;
+	}
+}
+
+$spriteWidth: 45px;
+$spriteHeight: 60px;
+
+.billy {
+	background: url('../images/sprite.png') no-repeat;
+	background-position: 0px 0px;
+	height: $spriteHeight;
+	width: $spriteWidth;
+	position: absolute;
+	bottom: 10px;
+	left: 10px;
+	z-index: 10;
+}
+
+.enemy {
+	background: url('../images/enemy.png') no-repeat;
+	background-position: -225px -60px;
+	height: $spriteHeight;
+	width: $spriteWidth;
+	position: absolute;
+	bottom: 10px;
+	left: 340px;
+	z-index: 10;
+}
+/* Old code prior to SASS Mixins */
+/*
+.r-kick {
+	animation: r-kick steps(3) 0.30s infinite;
+	-webkit-animation: r-kick steps(3) 0.30s infinite;
+}
+@-webkit-keyframes r-kick {
+	from { background-position: 0px -180px; }
+	to { background-position: -135px -180px; }
+}
+@keyframes r-kick {
+	from { background-position: 0px -180px; }
+	/*all the way to the very end of the image*/
+	/*to { background-position: -135px -180px; }
+}
+*/
+
+/* right kick */
+@include anim($className:r-kick, $steps:3, $animNum:3, $animParams:.30s infinite);
+
+/* left kick */
+@include anim($className:l-kick, $steps:3, $animNum:4, $animParams:.30s infinite);
+
+/* walk right */
+@include anim($className:r-walk, $steps:6, $animNum:1, $animParams:.60s infinite);
+
+/* walk left */
+@include anim($className:l-walk, $steps:6, $animNum:2, $animParams:.60s infinite);
